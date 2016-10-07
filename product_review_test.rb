@@ -4,7 +4,7 @@ require 'test/unit'
 
 class ProductReview < Test::Unit::TestCase
 
-  @alter_comment = "Testing testing"
+  @alter_comment = "Testing testing!!"
 
   def test_add_new_review
     fox_driver = Selenium::WebDriver.for(:firefox)
@@ -26,7 +26,7 @@ class ProductReview < Test::Unit::TestCase
     # Fill in UserRating
     fox_driver.find_element(:css, "a[title='5']").click
     # Fill in UserComment
-    fox_driver.find_element(:id, :comment).clear
+    fox_driver.find_element(:id, "comment").clear
     fox_driver.find_element(:id, "comment").send_keys("#{@alter_comment} #{ENV['USERNAME'] || ENV['USER']}")
     fox_driver.find_element(:id, "submit").click
 
@@ -54,7 +54,30 @@ class ProductReview < Test::Unit::TestCase
   end
 
   def test_adding_a_dup_review
-    #
+    fox_driver = Selenium::WebDriver.for(:firefox)
+    fox_driver.get("http://awful-valentine.com/")
+
+    fox_driver.find_element(:css, '.special-item a[href*="our-love-is-special"].more-info').click
+    # Check with assert whether correct product was clicked
+    assert_equal("http://awful-valentine.com/our-love-is-special/", fox_driver.current_url)
+    assert_equal("Our love is special!!", fox_driver.find_element(:css, ".category-title").text)
+
+    fox_driver.find_elements(:css, '.special_item a[href*="our-love-is-special"].more-info').click
+
+    fox_driver.find_element(:id, "author").send_keys("Dima")
+    fox_driver.find_element(:id, "email").send_keys("dima@selenium.com")
+    fox_driver.find_element(:id, "url").send_keys("http://awful-valentine.com")
+    # Fill in UserRating
+    fox_driver.find_element(:css, "a[title='5']").click
+    # Fill in UserComment
+    fox_driver.find_element(:id, :comment).clear
+    fox_driver.find_element(:id, "comment").send_keys("#{@alter_comment} #{ENV['USERNAME'] || ENV['USER']}")
+    fox_driver.find_element(:id, "submit").click
+
+    error = fox_driver.find_element(:id, "error-page").text
+    assert_equal("Duplicate comment detected; it loooks as though you\u2019ve already said that!", error)
+
+    fox_driver.quit
   end
 
 end
