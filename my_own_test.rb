@@ -18,9 +18,6 @@ class MyOwnTest < Test::Unit::TestCase
     assert(@ff_browser.find_element(:id, "rhs_block").text.include?("BlackBerry Limited, formerly known as Research In Motion Limited, is a Canadian multinational telecommunication and wireless equipment company best known to the general public as the developer of the ..."))
 
     @ff_browser.quit
-
   end
-
-
 
 end
