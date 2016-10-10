@@ -4,7 +4,7 @@ require 'test/unit'
 
 class ProductReview < Test::Unit::TestCase
 
-  @alter_comment = "teeesstttttt" # Could not use this for interpolation
+  @alter_comment = "teeesstttttt" # Could not use this for interpolation. Some parsing issues.
 
    def test_add_new_review
      fox_driver = Selenium::WebDriver.for(:firefox)
