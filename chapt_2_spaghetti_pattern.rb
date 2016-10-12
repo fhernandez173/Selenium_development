@@ -50,7 +50,7 @@ class ProductReview < Test::Unit::TestCase
      fox_driver.find_element(:id, "url").send_keys("http://awful-valentine.com")
      fox_driver.find_element(:css, "a[title='5']").click
      fox_driver.find_element(:id, "comment").clear
-     fox_driver.find_element(:id, "comment").send_keys("This is a comment for product! #{ENV['USERNAME'] || ENV['USER']} aa")
+     fox_driver.find_element(:id, "comment").send_keys("This is a comment for product! #{ENV['USERNAME'] || ENV['USER']}")
      fox_driver.find_element(:id, "submit").click
 
      error = fox_driver.find_element(:id, "error-page").text
