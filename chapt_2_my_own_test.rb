@@ -11,6 +11,8 @@ together it becomes difficult to tell one apart from another. Tests depends
 on execution order of all tests, tends to over-share internal private
 components.
 
+http://stackoverflow.com/questions/5665307/how-to-search-dom-elements-using-xpath-or-css-selectors-in-chrome-developer-tool
+
 Locating element by link
 http://www.software-testing-tutorials-automation.com/2014/01/how-to-locate-element-by-link-text-or.html
 
@@ -33,11 +35,33 @@ class MyOwnSpaghetti < Test::Unit::TestCase
     assert_equal("http://automationpractice.com/index.php", fox_driver.current_url)
 
     fox_driver.find_element(:id, "contact-link").click
+    # assert we are in the rigth contacts page
+    assert_equal("http://automationpractice.com/index.php?controller=contact", fox_driver.current_url)
+=begin
+    down vote
+    Here's a better option that I found:
+
+    #Select the dropdown button
+    dropdown_list = driver.find_element(:id, 'check_list')
+
+    #Get all the options from the dropdown
+    options = dropdown_list.find_elements(tag_name: 'option')
+
+    #Find the dropdown value by text
+    options.each { |option| option.click if option.text == 'CHEESE' }
+=end
+
     # click on SubjectHeading
     binding.pry
-    fox_driver.find_element(:id, "uniform-id_contact").click
+    fox_driver.find_element(:css, "select#id_contact.form-control").click
     # FInd the id below, and click on the option based on nth-child we want
-    fox_driver.find_element(:css, 'select#id_contact option:nth-child(1)').click # find what to click here
+    # this below scrolls the page down
+    fox_driver.find_element(:css, 'select#id_contact option:nth-child(1)').click
+
+    # Alternative to the above
+    # use xpath and get the id and span tag. Search for click issues.
+    fox_driver.find_element(:xpath, 'uniform-id_contact').click
+
     # click on EmailAddress
     fox_driver.find_element(:id, "email").send_keys("f.hernandez173+1234567@gmail.com")
     # click on Order Reference
