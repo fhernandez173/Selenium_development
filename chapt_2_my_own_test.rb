@@ -23,6 +23,8 @@ Automation practice sites
 http://www.seleniumframework.com/demo-sites/
 http://automationpractice.com/index.php
 
+Installed SelectorGadget extension to find what selector I want
+
 =end
 
 class MyOwnSpaghetti < Test::Unit::TestCase
@@ -53,7 +55,9 @@ class MyOwnSpaghetti < Test::Unit::TestCase
 
     # click on SubjectHeading
     binding.pry
-    fox_driver.find_element(:css, "select#id_contact.form-control").click
+    # select the top div, and go into the div the select is tigged under
+    fox_driver.find_element(:xpath, "//*[@id=\"id_contact\"]/descendant::span[text='-- Choose --']")
+    dropdown_div.find_element(tag_name: 'select').click
     # FInd the id below, and click on the option based on nth-child we want
     # this below scrolls the page down
     fox_driver.find_element(:css, 'select#id_contact option:nth-child(1)').click
