@@ -11,3 +11,6 @@ Do following under Development dir:
 * git remote add origin [ssh .git link]
 * git remote -v --- to check origin
 * git push origin master --- to push changes
+
+For later, I will need to put these under one folder under Selenium_development
+to keep it neat. 
