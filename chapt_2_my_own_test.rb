@@ -3,29 +3,7 @@ require 'selenium-webdriver'
 require 'test/unit'
 require 'pry'
 
-=begin
 
-Spaghetti pattern, an anti-pattern, involves lack of percieved architecture
-and design. There are single tests or multiple tests intertwined so tightly
-together it becomes difficult to tell one apart from another. Tests depends
-on execution order of all tests, tends to over-share internal private
-components.
-
-http://stackoverflow.com/questions/5665307/how-to-search-dom-elements-using-xpath-or-css-selectors-in-chrome-developer-tool
-
-Locating element by link
-http://www.software-testing-tutorials-automation.com/2014/01/how-to-locate-element-by-link-text-or.html
-
-Automation book
-https://www.packtpub.com/mapt/book/Web+Development/9781783982707/2/ch02lvl1sec17/Testing+the+product+review+functionality
-
-Automation practice sites
-http://www.seleniumframework.com/demo-sites/
-http://automationpractice.com/index.php
-
-Installed SelectorGadget extension to find what selector I want
-
-=end
 
 class MyOwnSpaghetti < Test::Unit::TestCase
 
@@ -101,3 +79,31 @@ class MyOwnSpaghetti < Test::Unit::TestCase
   # end
 
 end
+
+
+=begin
+
+Spaghetti pattern, an anti-pattern, involves lack of percieved architecture
+and design. There are single tests or multiple tests intertwined so tightly
+together it becomes difficult to tell one apart from another. Tests depends
+on execution order of all tests, tends to over-share internal private
+components.
+
+Selecting dropdown:
+https://www.getdrip.com/deliveries/zwsgzvxxeybaxe29bgpe?__s=gpqtcoipuyd7foxcygax
+
+http://stackoverflow.com/questions/5665307/how-to-search-dom-elements-using-xpath-or-css-selectors-in-chrome-developer-tool
+
+Locating element by link
+http://www.software-testing-tutorials-automation.com/2014/01/how-to-locate-element-by-link-text-or.html
+
+Automation book
+https://www.packtpub.com/mapt/book/Web+Development/9781783982707/2/ch02lvl1sec17/Testing+the+product+review+functionality
+
+Automation practice sites
+http://www.seleniumframework.com/demo-sites/
+http://automationpractice.com/index.php
+
+Installed SelectorGadget extension to find what selector I want
+
+=end
