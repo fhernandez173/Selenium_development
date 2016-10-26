@@ -27,7 +27,28 @@ PROS -
 * Helps to add functionality that will capture screenshots of test failures
 
 CONS -
-* Increases time, but not drastically. 
+* Increases time, but not drastically.
+
+In our SeleniumWrapper class, begin-rescue wraps out methods in order to capture any errors and take a screenshot of the errors along with identifying where the error is at.
+
+File chapt_5_run_test.rb created to have our dependencies in one file and run it all.
+
+BLACK HOLE PROXY PATTERN:
+This gets rid of third-party uncertainties. These reduce the stability of our tests. This takes all HTTP requests going to third-parties and blocks them. In a production env, we do not block these assets, and should be properly loaded using the proxy whitelist feature.
+PROS -
+* Improves speed due to no waiting time for third-parties.
+* Improves stability through verifying that the core functionality of our app still functions since we have removed any third-party dependencies. These may include social buttons, and tracking.
+* The tests have higher control over the env, reducing failures.
+
+CONS -
+* A broken layout appears when removing third-party content.
+* Third-party content tests brake. Any test that check logging using social media accounts will brake.
+
+We get Timeout::Error when third-parties have a slow connection with our app; the tests timed out while waiting for third-parties.
+In the initialize method, we do not need to use a fake proxy to send our requests to. We can use an external proxy server that logs all external URLs to a logfile. This server needs to return a 200 response. We can use BrowserMob Proxy for this.
+
+FINAL THOUGHTS:
+Run our tests several times before considering it stable. Test our tests in multiple browsers. 
 
 
 #

@@ -1,7 +1,4 @@
-require 'rubygems'
-require 'selenium-webdriver'
-require 'test/unit'
-require File.join(File.dirname(__FILE__), 'chapt_5_test_data')
+require 'pry'
 
 class ProductValidationsTests < Test::Unit::TestCase
 
@@ -25,7 +22,7 @@ class ProductValidationsTests < Test::Unit::TestCase
     TestData.get_product_from_api.each do |product_info|
       # combine product_info with TestData to navigate to product's page
       @fox_driver.get(TestData.get_base_url + product_info["url"])
-      verify_product_inf0(product_info)
+      verify_product_info(product_info)
     end
   end
 
