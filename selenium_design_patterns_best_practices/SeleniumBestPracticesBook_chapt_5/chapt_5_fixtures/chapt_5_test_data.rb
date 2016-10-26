@@ -41,11 +41,11 @@ class TestData
   end
 
   def self.get_product_fixtures
-    fixture_file = File.join(File.dirname(__FILE__), 'chapt_4_yaml_fixtures.yml')
+    fixture_file = File.join(File.dirname(__FILE__), 'chapt_5_yaml_fixtures.yml')
     YAML.load_file(fixture_file)
   end
 
-  def self.get_product_from_api
+  def self.get_products_from_api
     uri = URI.parse("http://api.awful-valentine.com/") # creates a URI obj from a string
     json_string = NET::HTTP.get(uri) # passed to method call to unparse JSON in return
     JSON.parse(json_string) # Parses the atring, returns a hash
