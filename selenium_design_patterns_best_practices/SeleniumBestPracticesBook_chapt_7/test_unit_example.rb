@@ -1,0 +1,25 @@
+require File.expand_path(File.join(File.dirname(__FILE__), "page_objects", "requires"))
+
+class ShoppingCartOnContactUsPageTest < Test::Unit::TestCase
+
+  def setup
+    @selenium = Selenium::WebDriver.for(:firefox)
+  end
+
+  def teardown
+    @selenium.quit
+  end
+
+  def test_cart_on_contact_page
+    @selenium.get "http://awful-valentines.com/"
+
+    page = HomePage.new(@selenium) # here the HomePage object handles the test
+    page.special_items.first.add_to_cart
+    @selenium get "http://awful-valentines.com/contact-us"
+
+    page = ContactUsPage.new(@selenium) # ContactUsPage take sover and validates page landing
+    assert_equal("You have 1 item ($5.77) in your shopping cart.", page.sidebar.cart.summary)
+    assert_equal("$5.77", page.sidebar.cart.subtotal)
+  end
+
+end
