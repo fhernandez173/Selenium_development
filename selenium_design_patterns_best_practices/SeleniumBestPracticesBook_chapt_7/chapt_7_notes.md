@@ -64,7 +64,35 @@ We can expand the SidebarCart class with two methods that will handle viewing th
 
 We do not need to convert the entire test suite into a page object framework in order to take advantage of it.
 
+In the following code:
 
+  ContactUsPage.new(@selenium).sidebar.cart.summary
+
+* We know that we are in the Contact US page presented by ContactUsPage object
+* ContactUsPage has SideBar object which allows to interact with items within
+* Within the sidebar, we can find the shopping cart, and use SidebarCart object in it
+* Using SidebarCart we can retrieve the summary of cart/ subtotal
+
+Using Selenium alone would mean we would have to hardcode a lot of :classes and :IDs. If changes are made, we would have to do a lot of rewrites. Using the Page Object pattern, the only changes we would have to do are in the Sidebar and SidebarCart classes locate elements.
+
+The Page Objects framework can be implemented in different testing frameworks, including Cucumber and Rspec since it is independent of these frameworks.
+
+WRITING AN INDEPENDENT TEST FRAMEWORK:
+PROS -
+* Easily upgradable. By hiding method implementation from tests, the tests do not need to know current versions of dependencies.
+* We can change our testing tools without changing too much the core of our tests.
+* Easy to understand and consistent. Our tests describes behavior rather than specifying clicks, etc.
+
+CONS _
+* We increase overhead and complexity.
+
+IMPLEMENTING PAGE OBJECTS:
+Once we have an instance of Selenium, we continuously pass that as an argument to other objects. Example:
+  @selenium.get "website.com"
+  page = HomePage(@selenium)
+This shows progression from page to page.
+We can use a mixture of modules and inheritance. In our tests, the pages are very similar, so inheritance is used often. Sometimes it is more useful to subpage imports with only functionality we need and ignore what does not apply as opposed to inheriting everything from say Page class.
+In the Page object, we can add more logic to verify the page has fully loaded. We do not to verify everything on the page. 
 
 
 

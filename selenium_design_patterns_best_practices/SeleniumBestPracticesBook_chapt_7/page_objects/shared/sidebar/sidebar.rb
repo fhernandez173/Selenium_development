@@ -1,7 +1,7 @@
 # Since the sidebar has an advertisement section, and the cart, we will need
 # two getter methods, to return an object for each
 
-class SideBar
+class Sidebar
 
   def initialize(selenium)
     @selenium = selenium
