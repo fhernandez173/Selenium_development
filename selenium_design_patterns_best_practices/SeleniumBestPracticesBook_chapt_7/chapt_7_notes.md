@@ -88,11 +88,11 @@ CONS _
 
 IMPLEMENTING PAGE OBJECTS:
 Once we have an instance of Selenium, we continuously pass that as an argument to other objects. Example:
-  @selenium.get "website.com"
+  @selenium.get("website.com")
   page = HomePage(@selenium)
 This shows progression from page to page.
 We can use a mixture of modules and inheritance. In our tests, the pages are very similar, so inheritance is used often. Sometimes it is more useful to subpage imports with only functionality we need and ignore what does not apply as opposed to inheriting everything from say Page class.
-In the Page object, we can add more logic to verify the page has fully loaded. We do not to verify everything on the page. 
+In the Page object, we can add more logic to verify the page has fully loaded. We do not to verify everything on the page.
 
 
 
