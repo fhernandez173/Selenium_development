@@ -2,7 +2,8 @@ require 'rubygems'
 require 'selenium-webdriver'
 require 'test/unit'
 require 'pry'
-require './support_methods'
+# require_relative or join the file
+require_relative '../helpers/support_methods'
 
 
 
@@ -17,34 +18,33 @@ class TestingContactsPage < Test::Unit::TestCase
   end
 
   def test_customer_service_email_confirmed_set
-    @fox_driver_instance.SupportMethods.get_website_url
+    # binding.pry
+    @fox_driver_instance.get_website_url
+    assert_equal("http://automationpractice.com/index.php", @fox_driver_instance.current_url)
 
-    assert_equal("http://automationpractice.com/index.php", fox_driver.current_url)
-
-    fox_driver.find_element(:id, "contact-link").click
+    @fox_driver_instance.go_to_contacts_page
     # assert we are in the rigth contacts page
-    assert_equal("http://automationpractice.com/index.php?controller=contact", fox_driver.current_url)
+    assert_equal("http://automationpractice.com/index.php?controller=contact", @fox_driver_instance.current_url)
 
     # binding.pry
     # select the top div, and go into the div the select is tigged under
-    SupportMethods.filling_out_contacts_form
+    @fox_driver_instance.filling_out_contacts_form
 
-    fox_driver.quit
+    success_message = @fox_driver_instance.find_element(:id, "center_column").find_element(:class, "alert-success").text
+    assert_equal("Your message has been successfully sent to our team.", success_message)
   end
 
   # def test_customer_service_email_missing_field
-  #   fox_driver = Selenium::WebDriver.for(:firefox)
-  #   fox_driver.get("http://automationpractice.com")
+  #   @fox_driver_instance = Selenium::WebDriver.for(:firefox)
+  #   @fox_driver_instance.get("http://automationpractice.com")
   #
-  #   assert_equal("http://automationpractice.com/index.php", fox_driver.current_url)
+  #   assert_equal("http://automationpractice.com/index.php", @fox_driver_instance.current_url)
   #
-  #   fox_driver.find_element(:id, "contact-link").click
+  #   @fox_driver_instance.find_element(:id, "contact-link").click
   #   # assert we are in the rigth contacts page
-  #   assert_equal("http://automationpractice.com/index.php?controller=contact", fox_driver.current_url)
+  #   assert_equal("http://automationpractice.com/index.php?controller=contact", @fox_driver_instance.current_url)
   #
   #   SupportMethods.filling_out_contacts_form
-  #
-  #   fox_driver.quit
   # end
 
 end
