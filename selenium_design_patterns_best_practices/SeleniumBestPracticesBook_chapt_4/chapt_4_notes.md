@@ -32,7 +32,7 @@ To change env from terminal, use export environment=production.
 
 FIXTURES:
 These are any test data that lives outside a particular test, used to set
-application in a certain state. t allows a constant to compare individual test runs against.
+application in a certain state. It allows a constant to compare individual test runs against.
 Best with env in high accessibility scale. We fill up our local env with
 fixed data. Example:
 __________________________________________
