@@ -1,6 +1,6 @@
 # Thsi class hides dta from Tests
 
-require 'faker'
+require 'faker' # for later cart tests
 
 class TestingData
 
@@ -11,13 +11,35 @@ class TestingData
  # URL extensions
  def self.url_extensions(key_searched)
    url_extension_hash = {
-     "contact_page" => "controller=contact",
+     "contact_page" => "?controller=contact",
      "cart_summary_page" => "?controller=order"
    }
    url_extension_hash.each do |key, value|
      if key_searched = key
        return value
      end
+   end
+ end
+
+ def self.user_email
+   Faker::Internet.email
+ end
+
+ def self.user_name
+   Faker::Internet.user_name
+ end
+
+ def self.order_reference
+   Faker::Number.number(8)
+ end
+
+ def self.message_box_input
+   "I have an issue with #{self.order_reference}."
+ end
+
+ def self.search_term(search = true)
+   # is false, give garbled non-sense
+   # If true, give actual findable product
  end
 
 end
